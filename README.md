@@ -3,7 +3,7 @@ Matlab scripts to analyse data from an fMRI study on somatosensory target detect
 
 Requires SPM12 software package: https://www.fil.ion.ucl.ac.uk/spm/software/spm12/
 
-Model log evidence maps and exceedance probabilities can be downloaded at https://figshare.com/articles/Neural_basis_of_somatosensory_target_detection_-_Data/7347167 and directly inspected at https://neurovault.org/collections/4496/
+Log model evidence maps and exceedance probability maps can be downloaded at https://figshare.com/articles/Neural_basis_of_somatosensory_target_detection_-_Data/7347167 and directly inspected at https://neurovault.org/collections/4496/
 
 ## Scripts
 ### Behavioural analysis:
