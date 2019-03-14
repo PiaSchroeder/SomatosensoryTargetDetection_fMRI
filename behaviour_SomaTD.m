@@ -165,6 +165,7 @@ Ts.mean_T99 = mean_T99;
 % 3. Reaction times
 % =========================================================================
 
+% Assemble RTs
 RT.yes = nan(nSub,1);
 RT.no = nan(nSub,1);
 for s = 1:nSub
@@ -188,8 +189,13 @@ RT.diff = RT.yes - RT.no;
 RT.mean_diff = mean(RT.diff);
 RT.se_diff = std(RT.diff)/sqrt(nSub);
 
+% Test RT difference between detected and undetected targets 
 [RT.h_normal,RT.p_normal] = lillietest(RT.diff);
 [RT.h_diff,RT.p_diff,RT.ci_diff, RT.stats_diff] = ttest(RT.yes,RT.no);
+
+% Compute Bayes factors
+RT.BF10 = bf_ttest(RT.yes,RT.no);
+RT.BF01 = 1/RT.BF10;
 
 % Plot group result det vs nodet
 % figure
@@ -227,17 +233,24 @@ RT.se_diff = std(RT.diff)/sqrt(nSub);
 Resp.Det = nan(nSub,nTrials*nRuns);     % Detected/Not detected
 Resp.Match = nan(nSub,nTrials*nRuns);   % Match/Mismatch
 
+Det_Match_tab = nan(2,2,nSub);
 Det_Match_p = nan(nSub,1);
+Det_Match_BF10 = nan(nSub,1);
+Det_Match_BF01 = nan(nSub,1);
 
 for s = 1:nSub
     for r = 1:nRuns
         Resp.Det(s,(1+(r-1)*nTrials):(nTrials+(r-1)*nTrials)) = Data{s,r}.behaviour.detection;
         Resp.Match(s,(1+(r-1)*nTrials):(nTrials+(r-1)*nTrials)) = Data{s,r}.behaviour.match; 
     end
-    [~,~,Det_Match_p(s)] = crosstab(Resp.Det(s,:),Resp.Match(s,:));
+    [Det_Match_tab(:,:,s),~,Det_Match_p(s)] = crosstab(Resp.Det(s,:),Resp.Match(s,:));
+    Det_Match_BF10(s) = c_table(Det_Match_tab(:,:,s));
+	Det_Match_BF01(s) = 1/Det_Match_BF10(s);
 end
 
 Resp.Det_Match_p = Det_Match_p;
+Resp.Det_Match_BF10 = Det_Match_BF10;
+Resp.Det_Match_BF01 = Det_Match_BF01;
 
 %%
 % =========================================================================

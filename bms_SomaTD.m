@@ -29,7 +29,8 @@ for s = 1:numel(SJs)
     matlabbatch{1}.spm.stats.bms_map.inference.sess_map{s}.mod_map = f;
 end
 
-mask_file = 'mydir\mask_ICV.nii';
+mask_file = 'mydir\mask_ICV.nii'; % whole brain
+% mask_file = 'mydir\plusfamily.nii'; % within +family clusters only
 matlabbatch{1}.spm.stats.bms_map.inference.mod_name = models';
 matlabbatch{1}.spm.stats.bms_map.inference.method_maps = level;
 matlabbatch{1}.spm.stats.bms_map.inference.out_file = 1;
