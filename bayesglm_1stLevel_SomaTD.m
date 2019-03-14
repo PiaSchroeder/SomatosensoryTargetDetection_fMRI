@@ -1,5 +1,6 @@
 function bayesglm_1stLevel_SomaTD(data_dir,ffx_name, runs, sub)
-%% Specifies and estimates 1st level GLM with Bayesian parameter estimation to produce PPMs
+%% Specifies and estimates 1st level GLM with Bayesian parameter estimation 
+% to produce PPMs and Log Evidence Maps
 
 rng('shuffle');
 
@@ -8,10 +9,6 @@ tgt_dir = fullfile(data_dir, 'BayesGLM', ffx_name);
 if ~exist(tgt_dir, 'dir')
     mkdir(tgt_dir)
     disp(['Created directory: ' tgt_dir])
-else
-    disp(['Directory already exists: ' tgt_dir])
-    disp(['Skipping ' sub ' ' ffx_name])
-    return
 end
 
 filt = '^warf.*\.nii$';
@@ -26,7 +23,7 @@ matlabbatch{1}.stats{1}.fmri_spec.timing.RT        = 2;
 matlabbatch{1}.stats{1}.fmri_spec.timing.fmri_t    = 16;
 matlabbatch{1}.stats{1}.fmri_spec.timing.fmri_t0   = 8;
 
-%% Start looping through sessions
+%% Start looping through runs
 %% Onsets + Intensity levels
 if regexp(ffx_name, '_IntRT$')
     
