@@ -1,5 +1,7 @@
 # SomatosensoryTargetDetection_fMRI
-Matlab scripts to analyse data from an fMRI study on somatosensory target detection
+Matlab scripts to analyse data from an fMRI study on somatosensory target detection:
+
+Schröder P, Schmidt TT, Blankenburg F (2019). Neural basis of somatosensory target detection independent of uncertainty, relevance, and reports. eLife, 8, e43410. https://doi.org/10.7554/eLife.43410.001
 
 Requires SPM12 software package: https://www.fil.ion.ucl.ac.uk/spm/software/spm12/
 
